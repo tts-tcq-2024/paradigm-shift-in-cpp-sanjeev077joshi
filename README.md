@@ -1,3 +1,8 @@
+# Paradigm - shift- extended
+
+Extension 1  I have tried to implement.
+Subsequently I will try to implement Extension 2.
+
 # paradigm-shift-cplus
 # Programming Paradigms
 
