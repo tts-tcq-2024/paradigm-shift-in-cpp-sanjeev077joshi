@@ -2,6 +2,7 @@
 #include <iostream>
 using namespace std;
 
+
 bool batteryIsOk(float temperature, float soc, float chargeRate) {
   if(temperature < 0 || temperature > 45) {
     cout << "Temperature out of range!\n";
