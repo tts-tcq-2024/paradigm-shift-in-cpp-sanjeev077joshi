@@ -51,7 +51,7 @@ bool checkValueInRange ( float value, float LowerLimit, float UpperLimit, const 
 bool checkTemperature (float temp)
 {
     bool TempStatus = checkValueInRange(temp, TEMP_LOWER_LIMIT, TEMP_UPPER_LIMIT, "Temperature out of range");
-    CheckWarningForGivenValue(temp, TEMP_LOWER_LIMIT, TEMP_UPPER_LIMIT, "Approaching High Temperature", Approaching Lower Temerature");
+    CheckWarningForGivenValue(temp, TEMP_LOWER_LIMIT, TEMP_UPPER_LIMIT, "Approaching High Temperature", "Approaching Lower Temerature");
         
     return TempStatus;
 }
@@ -59,7 +59,7 @@ bool checkTemperature (float temp)
 bool checkSoc (float soc)
 {
     bool SocStatus = checkValueInRange(soc, SOC_LOWER_LIMIT, SOC_UPPER_LIMIT, "State of Charge out of range");
-    CheckWarningForGivenValue(soc, SOC_LOWER_LIMIT, SOC_UPPER_LIMIT, "Approaching Charge Peak", Approaching Discharge");
+    CheckWarningForGivenValue(soc, SOC_LOWER_LIMIT, SOC_UPPER_LIMIT, "Approaching Charge Peak", "Approaching Discharge");
     
     return SocStatus;
 }
@@ -67,7 +67,7 @@ bool checkSoc (float soc)
 bool checkChargeRate (float ChargeRate)
 {
     bool ChargeStatus = checkValueInRange(ChargeRate, CHARGE_LOWER_LIMIT, CHARGE_UPPER_LIMIT, "Charge Rate out of range");
-    CheckWarningForGivenValue(ChargeRate, CHARGE_LOWER_LIMIT, CHARGE_UPPER_LIMIT, "Approaching Peak Charge Rate", Approaching Lower Charge Rate");
+    CheckWarningForGivenValue(ChargeRate, CHARGE_LOWER_LIMIT, CHARGE_UPPER_LIMIT, "Approaching Peak Charge Rate", "Approaching Lower Charge Rate");
     
     return ChargeStatus;
 }
