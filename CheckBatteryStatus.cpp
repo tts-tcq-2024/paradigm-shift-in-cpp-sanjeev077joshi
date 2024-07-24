@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 
+#include "CheckBatteryStatus.h"
+
 using namespace std;
 
 enum battery_params
@@ -13,13 +15,26 @@ enum battery_params
     CHARGE_UPPER_LIMIT = 1
 };
 
-float TEMP_TOLERANCE   = 0.5 * TEMP_UPPER_LIMIT;
-float SOC_TOLERANCE    = 0.5 * SOC_UPPER_LIMIT;
-float CHARGE_TOLERANCE = 0.5 * CHARGE_UPPER_LIMIT;
-
 void printMessage (const string& message)
 {
-   cout<<message<<endl;
+   cout << message << endl;
+}
+
+void printwarningmessage (const string& warningmessage)
+{
+    cout << warningmessage << endl;
+}
+
+void CheckWarningForGivenValue (float value, float LowerLimit, float UpperLimit, const string& UpperLimitWarningMessage, const string& LowerLimitWarningMessage)
+{
+    float UpperLimitTolerance = 0.5 * UpperLimit;
+    float LowerLimitTolerance = 0.5 * LowerLimit;
+
+    if (value >= UpperLimit - UpperLimitTolerance)
+        printMessage(UpperLimitWarningMessage);
+
+    if (value <= LowerLimit - LowerLimitTolerance)
+        printMessage(LowerLimitWarningMessage);
 }
 
 bool checkValueInRange ( float value, float LowerLimit, float UpperLimit, const string& OutputMessage)
@@ -36,18 +51,24 @@ bool checkValueInRange ( float value, float LowerLimit, float UpperLimit, const 
 bool checkTemperature (float temp)
 {
     bool TempStatus = checkValueInRange(temp, TEMP_LOWER_LIMIT, TEMP_UPPER_LIMIT, "Temperature out of range");
+    CheckWarningForGivenValue(temp, TEMP_LOWER_LIMIT, TEMP_UPPER_LIMIT, "Approaching High Temperature", Approaching Lower Temerature");
+        
     return TempStatus;
 }
 
 bool checkSoc (float soc)
 {
     bool SocStatus = checkValueInRange(soc, SOC_LOWER_LIMIT, SOC_UPPER_LIMIT, "State of Charge out of range");
+    CheckWarningForGivenValue(temp, SOC_LOWER_LIMIT, SOC_UPPER_LIMIT, "Approaching Charge Peak", Approaching Discharge");
+    
     return SocStatus;
 }
 
 bool checkChargeRate (float ChargeRate)
 {
     bool ChargeStatus = checkValueInRange(ChargeRate, CHARGE_LOWER_LIMIT, CHARGE_UPPER_LIMIT, "Charge Rate out of range");
+    CheckWarningForGivenValue(temp, CHARGE_LOWER_LIMIT, CHARGE_UPPER_LIMIT, "Approaching Peak Charge Rate", Approaching Lower Charge Rate");
+    
     return ChargeStatus;
 }
 
