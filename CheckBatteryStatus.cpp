@@ -20,11 +20,6 @@ void printMessage (const string& message)
    cout << message << endl;
 }
 
-void printwarningmessage (const string& warningmessage)
-{
-    cout << warningmessage << endl;
-}
-
 void CheckWarningForGivenValue (float value, float LowerLimit, float UpperLimit, const string& UpperLimitWarningMessage, const string& LowerLimitWarningMessage)
 {
     float UpperLimitTolerance = 0.5 * UpperLimit;
