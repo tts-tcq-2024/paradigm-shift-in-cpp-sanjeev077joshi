@@ -3,15 +3,6 @@
 
 using namespace std;
 
-#if 0
-enum speech
-{
-    ENGLISH,
-    GERMAN 
-}
-speech existing_language = ENGLISH;
-#endif
-
 enum battery_params
 {
     TEMP_LOWER_LIMIT   = 0,
