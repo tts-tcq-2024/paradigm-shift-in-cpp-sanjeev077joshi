@@ -5,64 +5,57 @@
 
 using namespace std;
 
-enum battery_params
-{
-    TEMP_LOWER_LIMIT   = 0,
-    TEMP_UPPER_LIMIT   = 45,
-    SOC_LOWER_LIMIT    = 20,
-    SOC_UPPER_LIMIT    = 80,
-    CHARGE_LOWER_LIMIT = 0,
-    CHARGE_UPPER_LIMIT = 1
-};
-
-void printMessage (const string& message)
+void PrintMessageOnConsole (const string& message)
 {
    cout << message << endl;
 }
 
 void CheckWarningForGivenValue (float value, float LowerLimit, float UpperLimit, const string& UpperLimitWarningMessage, const string& LowerLimitWarningMessage)
 {
-    float UpperLimitTolerance = 0.5 * UpperLimit;
-    float LowerLimitTolerance = 0.5 * LowerLimit;
+    float UpperLimitTolerance = 0.05 * UpperLimit;
+    float LowerLimitTolerance = 0.05 * LowerLimit;
 
     if (value >= UpperLimit - UpperLimitTolerance)
-        printMessage(UpperLimitWarningMessage);
+    	PrintMessageOnConsole(UpperLimitWarningMessage);
 
     if (value <= LowerLimit - LowerLimitTolerance)
-        printMessage(LowerLimitWarningMessage);
+    	PrintMessageOnConsole(LowerLimitWarningMessage);
 }
 
-bool checkValueInRange ( float value, float LowerLimit, float UpperLimit, const string& OutputMessage)
-{
-   if ( value < LowerLimit || value > UpperLimit)
-   {
-     printMessage(OutputMessage);
-     return false;
-   }
-
+bool checkValueInRange(float value,
+		               float LowerLimit,
+					   float UpperLimit,
+					   const string& OutputMessage) {
+    if (value < LowerLimit || value > UpperLimit) {
+    	PrintMessageOnConsole(OutputMessage);
+        return false;
+    }
     return true;
 }
 
 bool checkTemperature (float temp)
 {
-    bool TempStatus = checkValueInRange(temp, TEMP_LOWER_LIMIT, TEMP_UPPER_LIMIT, "Temperature out of range");
-    CheckWarningForGivenValue(temp, TEMP_LOWER_LIMIT, TEMP_UPPER_LIMIT, "Approaching High Temperature", "Approaching Lower Temerature");
-        
+	CheckWarningForGivenValue(temp, TEMP_LOWER_LIMIT, TEMP_UPPER_LIMIT, "Approaching High Temperature", "Approaching Lower Temerature");
+
+	bool TempStatus = checkValueInRange(temp, TEMP_LOWER_LIMIT, TEMP_UPPER_LIMIT, "Temperature out of range");
+
     return TempStatus;
 }
 
 bool checkSoc (float soc)
 {
-    bool SocStatus = checkValueInRange(soc, SOC_LOWER_LIMIT, SOC_UPPER_LIMIT, "State of Charge out of range");
-    CheckWarningForGivenValue(soc, SOC_LOWER_LIMIT, SOC_UPPER_LIMIT, "Approaching Charge Peak", "Approaching Discharge");
+	CheckWarningForGivenValue(soc, SOC_LOWER_LIMIT, SOC_UPPER_LIMIT, "Approaching Charge Peak", "Approaching Discharge");
+
+	bool SocStatus = checkValueInRange(soc, SOC_LOWER_LIMIT, SOC_UPPER_LIMIT, "State of Charge out of range");
     
     return SocStatus;
 }
 
 bool checkChargeRate (float ChargeRate)
 {
-    bool ChargeStatus = checkValueInRange(ChargeRate, CHARGE_LOWER_LIMIT, CHARGE_UPPER_LIMIT, "Charge Rate out of range");
-    CheckWarningForGivenValue(ChargeRate, CHARGE_LOWER_LIMIT, CHARGE_UPPER_LIMIT, "Approaching Peak Charge Rate", "Approaching Lower Charge Rate");
+	CheckWarningForGivenValue(ChargeRate, CHARGE_LOWER_LIMIT, CHARGE_UPPER_LIMIT, "Approaching Peak Charge Rate", "Approaching Lower Charge Rate");
+
+	bool ChargeStatus = checkValueInRange(ChargeRate, CHARGE_LOWER_LIMIT, CHARGE_UPPER_LIMIT, "Charge Rate out of range");
     
     return ChargeStatus;
 }
@@ -73,3 +66,4 @@ bool batteryIsOk(float temperature, float soc, float ChargeRate)
 
     return BatteryStatus;
 }
+
