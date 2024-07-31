@@ -70,7 +70,7 @@ void test_checkValueInRange() {
 }
 
 
-void tsst_CheckWarningForGivenValue() {
+void test_CheckWarningForGivenValue() {
 
     void (*messageHandler)(const string&);
 
