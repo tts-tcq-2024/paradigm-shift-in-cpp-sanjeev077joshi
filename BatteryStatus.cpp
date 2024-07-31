@@ -4,12 +4,12 @@
 #include "CheckBatteryStatus.h"
 
 extern bool test_checkValueInRange();
-extern void tsst_CheckWarningForGivenValue();
+extern void test_CheckWarningForGivenValue();
 
 int main() {
 
 	test_checkValueInRange();
-	tsst_CheckWarningForGivenValue();
+	test_CheckWarningForGivenValue();
 
 	/* Test cases for InRange Validation */
     assert(batteryIsOk(25, 70, 0.7) == true);
