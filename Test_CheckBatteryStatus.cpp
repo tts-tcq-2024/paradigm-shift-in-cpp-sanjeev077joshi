@@ -87,5 +87,22 @@ void tsst_CheckWarningForGivenValue() {
     CheckWarningForGivenValueMock(2, TEMP_LOWER_LIMIT , TEMP_UPPER_LIMIT,"Approaching High Temperature","Approaching Low Temperature", messageHandler);
     assert(capturedMessage == "Approaching Low Temperature");
 
+    /* Test cases to check SOC warnings */
+    capturedMessage.clear();
+    CheckWarningForGivenValueMock(78, SOC_LOWER_LIMIT , SOC_UPPER_LIMIT,"Approaching Charge Peak","Approaching Discharge", messageHandler);
+    assert(capturedMessage == "Approaching Charge Peak");
+
+    capturedMessage.clear();
+    CheckWarningForGivenValueMock(22, SOC_LOWER_LIMIT , SOC_UPPER_LIMIT,"Approaching Charge Peak","Approaching Discharge", messageHandler);
+    assert(capturedMessage == "Approaching Discharge");
+
+    /* Test cases to check Charge warnings */
+    capturedMessage.clear();
+    CheckWarningForGivenValueMock(0.78, CHARGE_LOWER_LIMIT , CHARGE_UPPER_LIMIT,"Approaching Peak Charge Rate", "Approaching Lower Charge Rate", messageHandler);
+    assert(capturedMessage == "Approaching Peak Charge Rate");
+
+    capturedMessage.clear();
+    CheckWarningForGivenValueMock(0.10, CHARGE_LOWER_LIMIT , CHARGE_UPPER_LIMIT,"Approaching Peak Charge Rate", "Approaching Lower Charge Rate", messageHandler);
+    assert(capturedMessage == "Approaching Lower Charge Rate");
 }
 
