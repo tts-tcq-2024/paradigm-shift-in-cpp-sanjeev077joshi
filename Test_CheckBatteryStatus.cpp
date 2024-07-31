@@ -118,7 +118,7 @@ void test_CheckWarningForGivenValue() {
     assert(capturedMessage == "Approaching Charge Peak");
 
     capturedMessage.clear();
-    CheckWarningForGivenValueMock(21, SOC_LOWER_LIMIT , SOC_UPPER_LIMIT,"Approaching Charge Peak","Approaching Discharge", messageHandler);
+    CheckWarningForGivenValueMock(20, SOC_LOWER_LIMIT , SOC_UPPER_LIMIT,"Approaching Charge Peak","Approaching Discharge", messageHandler);
     assert(capturedMessage == "Approaching Discharge");
 
     /* Test cases to check Charge warnings */
