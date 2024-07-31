@@ -104,12 +104,12 @@ void test_CheckWarningForGivenValue() {
 
     // Test case 1: Check for Hign Temperature Warning
     capturedMessage.clear();
-    CheckWarningForGivenValueMock(40, TEMP_LOWER_LIMIT , TEMP_UPPER_LIMIT,"Approaching High Temperature","Approaching Low Temperature", messageHandler);
+    CheckWarningForGivenValueMock(44, TEMP_LOWER_LIMIT , TEMP_UPPER_LIMIT,"Approaching High Temperature","Approaching Low Temperature", messageHandler);
     assert(capturedMessage == "Approaching High Temperature");
 
     // Test case 2 : Check for Low Temperature Warning Message
     capturedMessage.clear();
-    CheckWarningForGivenValueMock(2, TEMP_LOWER_LIMIT , TEMP_UPPER_LIMIT,"Approaching High Temperature","Approaching Low Temperature", messageHandler);
+    CheckWarningForGivenValueMock(1, TEMP_LOWER_LIMIT , TEMP_UPPER_LIMIT,"Approaching High Temperature","Approaching Low Temperature", messageHandler);
     assert(capturedMessage == "Approaching Low Temperature");
 
     /* Test cases to check SOC warnings */
