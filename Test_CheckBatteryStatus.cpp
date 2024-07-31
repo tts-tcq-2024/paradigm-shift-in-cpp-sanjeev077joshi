@@ -127,7 +127,7 @@ void test_CheckWarningForGivenValue() {
     assert(capturedMessage == "Approaching Peak Charge Rate");
 
     capturedMessage.clear();
-    CheckWarningForGivenValueMock(0.04, CHARGE_LOWER_LIMIT , CHARGE_UPPER_LIMIT,"Approaching Peak Charge Rate", "Approaching Lower Charge Rate", messageHandler);
+    CheckWarningForGivenValueMock(0, CHARGE_LOWER_LIMIT , CHARGE_UPPER_LIMIT,"Approaching Peak Charge Rate", "Approaching Lower Charge Rate", messageHandler);
     assert(capturedMessage == "Approaching Lower Charge Rate");
 }
 
