@@ -18,7 +18,7 @@ void CheckWarningForGivenValue (float value, float LowerLimit, float UpperLimit,
     if (value >= UpperLimit - UpperLimitTolerance)
     	PrintMessageOnConsole(UpperLimitWarningMessage);
 
-    if (value <= LowerLimit - LowerLimitTolerance)
+    if (value <= LowerLimit + LowerLimitTolerance)
     	PrintMessageOnConsole(LowerLimitWarningMessage);
 }
 
