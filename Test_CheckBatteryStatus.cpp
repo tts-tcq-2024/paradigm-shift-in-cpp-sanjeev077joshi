@@ -50,7 +50,7 @@ void CheckWarningForGivenValueMock (float value,
 
 // Unit test function
 void test_checkValueInRange() {
-    // Declare a function pointer
+// Declare a function pointer
     void (*messageHandler)(const string&);
 
     // Assign the function pointer to the mock print function
@@ -58,15 +58,40 @@ void test_checkValueInRange() {
 
     // Test case 1: value is within range
     capturedMessage.clear();
-    bool result1 = checkValueInRangeMock(10, 25, 0.6, "Value Within Range", messageHandler);
+    bool result1 = checkValueInRangeMock(10, TEMP_LOWER_LIMIT, TEMP_UPPER_LIMIT, "Temperature Within Range", messageHandler);
     assert(result1 == true);
     assert(capturedMessage.empty());
 
-    // Test case 2: value is below lower limit
+    // Test case 2: Temp value is out of range
     capturedMessage.clear();
-    bool result2 = checkValueInRangeMock(50, 85, 1, "Value Out Of Range", messageHandler);
+    bool result2 = checkValueInRangeMock(50, TEMP_LOWER_LIMIT, TEMP_UPPER_LIMIT, "Temperature Out Of Range", messageHandler);
     assert(result2 == false);
-    assert(capturedMessage == "Value Out Of Range");
+    assert(capturedMessage == "Temperature Out Of Range");
+
+    // Test case 3: SOC value is range
+    capturedMessage.clear();
+    bool result3 = checkValueInRangeMock(50, SOC_LOWER_LIMIT, SOC_UPPER_LIMIT, "SOC Value in Range", messageHandler);
+    assert(result1 == true);
+    assert(capturedMessage.empty());
+
+    // Test case 4: Soc value is out of range
+    capturedMessage.clear();
+    bool result4 = checkValueInRangeMock(100, SOC_LOWER_LIMIT, SOC_UPPER_LIMIT, "State of Charge out of range", messageHandler);
+    assert(result2 == false);
+    assert(capturedMessage == "State of Charge out of range");
+
+    // Test case 5: Charge value is out of range
+    capturedMessage.clear();
+    bool result5 = checkValueInRangeMock(0.5, CHARGE_LOWER_LIMIT, CHARGE_UPPER_LIMIT, "Charge in Range", messageHandler);
+    assert(result1 == true);
+    assert(capturedMessage.empty());
+
+    // Test case 6: Charge value is out of range
+    capturedMessage.clear();
+    bool result6 = checkValueInRangeMock(-1, CHARGE_LOWER_LIMIT, CHARGE_UPPER_LIMIT, "Charge Rate out of range", messageHandler);
+    assert(result2 == false);
+    assert(capturedMessage == "Charge Rate out of range");
+
 }
 
 
