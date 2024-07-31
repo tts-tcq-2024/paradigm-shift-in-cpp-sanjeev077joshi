@@ -44,7 +44,7 @@ void CheckWarningForGivenValueMock (float value,
     if (value >= UpperLimit - UpperLimitTolerance)
     	MockPrintMessage(UpperLimitWarningMessage);
 
-    if (value <= LowerLimit - LowerLimitTolerance)
+    if (value <= LowerLimit + LowerLimitTolerance)
     	MockPrintMessage(LowerLimitWarningMessage);
 }
 
