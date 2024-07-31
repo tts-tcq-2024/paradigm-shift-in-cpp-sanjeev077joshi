@@ -18,23 +18,25 @@ void MockPrintMessage(const string& message) {
 
 
 bool checkValueInRangeMock(float value,
-		                       float LowerLimit,
-					                 float UpperLimit,
-					                 const string& OutputMessage,
-					                 void (*messageHandler)(const string&)) {
-        if (value < LowerLimit || value > UpperLimit) {
-        	MockPrintMessage(OutputMessage);
-            return false;
-    }
-    return true;
+		           float LowerLimit,
+			   float UpperLimit,
+			   const string& OutputMessage,
+			   void (*messageHandler)(const string&)) 
+{
+        if (value < LowerLimit || value > UpperLimit) 
+	{
+	    MockPrintMessage(OutputMessage);
+	    return false;
+        }
+        return true;
 }
 
 void CheckWarningForGivenValueMock (float value,
-		                            float LowerLimit,
-									float UpperLimit,
-									const string& UpperLimitWarningMessage,
-									const string& LowerLimitWarningMessage,
-									void (*messageHandler)(const string&))
+		                    float LowerLimit,
+				    float UpperLimit,
+				    const string& UpperLimitWarningMessage,
+				    const string& LowerLimitWarningMessage,
+				    void (*messageHandler)(const string&))
 {
     float UpperLimitTolerance = 0.05 * UpperLimit;
     float LowerLimitTolerance = 0.05 * LowerLimit;
@@ -82,8 +84,8 @@ void tsst_CheckWarningForGivenValue() {
 
     // Test case 2 : Check for Low Temperature Warning Message
     capturedMessage.clear();
-	  CheckWarningForGivenValueMock(2, TEMP_LOWER_LIMIT , TEMP_UPPER_LIMIT,"Approaching High Temperature","Approaching Low Temperature", messageHandler);
-	  assert(capturedMessage == "Approaching Low Temperature");
+    CheckWarningForGivenValueMock(2, TEMP_LOWER_LIMIT , TEMP_UPPER_LIMIT,"Approaching High Temperature","Approaching Low Temperature", messageHandler);
+    assert(capturedMessage == "Approaching Low Temperature");
 
 }
 
